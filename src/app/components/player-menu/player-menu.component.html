@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Change Name</p>
+  <mat-form-field appearance="fill">
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Abort</button>
+  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data.remove" cdkFocusInitial>Remove Player</button>
+</div>

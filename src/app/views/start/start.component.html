@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+  <!--   <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button> -->
+</mat-toolbar>
+<main>
+  <!--<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Players</mat-label>
+      <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+  <form>
+  -->
+  <section class="players">
+    <ng-container *ngFor="let player of players">
+      <button class="item" mat-raised-button color="accent" (click)="openMenu(player)">{{player.name}}</button>
+    </ng-container>
+  </section>
+  <section class="add-player">
+    <button mat-fab color="primary" aria-label="Add new Player" (click)="addPlayer()">
+      <!-- https://fonts.google.com/icons?selected=Material+Icons -->
+      <mat-icon>add</mat-icon>
+    </button>
+  </section>
+
+
+
+  <mat-form-field class="game-select" appearance="fill">
+    <mat-label>Select Game</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let game of games" [value]="game.name">
+        {{game.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</main>
+<footer>
+  <button mat-raised-button color="accent" (click)="startGame()">Start Game</button>
+</footer>
