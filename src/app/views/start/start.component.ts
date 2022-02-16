@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IGame, Game301, Player } from 'src/app/shared/utils';
+import { IGame, Game301, Player, Game501 } from 'src/app/shared/utils';
 import { MatDialog } from '@angular/material/dialog';
 import { PlayerMenuComponent } from 'src/app/components/player-menu/player-menu.component';
+import { GameStateService } from 'src/app/services/game-state.service';
 
 @Component({
   selector: 'app-start',
@@ -12,15 +13,40 @@ export class StartComponent implements OnInit {
   title = "Dart"
 
   players: Player[] = [];
-  games: IGame[] = [new Game301(true)];
+  games: IGame[] = [new Game301(true), new Game501()];
 
   currentGame: IGame = null as any;
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private gameState: GameStateService) {
+    this.getSelectedGame();
+    this.players.push(...[new Player('Player 1', this.currentGame), new Player('Player 2', this.currentGame)]);
+    this.updateState();
+  }
+
+  getSelectedGame() {
     const game = this.games.find(g => g.selected);
     if (game) {
       this.currentGame = game;
-      this.players.push(...[new Player('Player 1', game), new Player('Player 2', game)])
     }
+  }
+
+  setGame(name: IGame['name']) {
+    this.games.forEach(g => {
+      if (g.name === name) {
+        g.selected = true;
+      } else {
+        g.selected = false;
+      }
+    });
+    this.getSelectedGame();
+    this.players.forEach(p => {
+      p.game = this.currentGame;
+    });
+    this.updateState();
+  }
+
+  updateState() {
+    this.gameState.$players.next(this.players);
+    this.gameState.$game.next(this.currentGame);
   }
 
   ngOnInit(): void {
@@ -52,6 +78,7 @@ export class StartComponent implements OnInit {
   addPlayer() {
     const player = new Player(`Player ${this.players.length + 1}`, this.currentGame);
     this.players.push(player);
+    this.updateState();
   }
 
 }

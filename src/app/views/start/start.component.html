@@ -29,7 +29,7 @@
 
   <mat-form-field class="game-select" appearance="fill">
     <mat-label>Select Game</mat-label>
-    <mat-select>
+    <mat-select [value]="currentGame.name" (valueChange)="setGame($event)">
       <mat-option *ngFor="let game of games" [value]="game.name">
         {{game.name}}
       </mat-option>
@@ -39,5 +39,5 @@
 
 </main>
 <footer>
-  <button mat-raised-button color="accent" (click)="startGame()">Start Game</button>
+  <button mat-raised-button color="accent" (click)="startGame()" [routerLink]="['/game']" [queryParams]="{debug: true}">Start Game</button>
 </footer>

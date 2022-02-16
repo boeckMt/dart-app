@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>Game: {{currentGame?.name}}</span>
+  <span class="example-spacer"></span>
+  <!-- https://fonts.google.com/icons?selected=Material+Icons -->
+
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
+    [routerLink]="['/start']" [queryParams]="{debug: true}">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+</mat-toolbar>
+<main>
+  <ng-container *ngIf="players.length">
+    <mat-card *ngFor="let player of players">{{player.name}}</mat-card>
+  </ng-container>
+
+
+</main>
+<footer>
+</footer>
