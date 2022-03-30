@@ -9,11 +9,25 @@
   </button>
 </mat-toolbar>
 <main>
-  <ng-container *ngIf="players.length">
-    <mat-card *ngFor="let player of players">{{player.name}}</mat-card>
-  </ng-container>
-
-
+  <section class="player-cards">
+    <ng-container *ngIf="players.length">
+      <mat-card *ngFor="let player of players" [ngClass]="{'active': ($activePlayer | async) === player.name}">
+        <div class="name">{{player.name}}</div>
+        <div class="count">{{player.count}}</div>
+      </mat-card>
+    </ng-container>
+  </section>
+  <section class="key-pad">
+    <button *ngFor="let key of keyPad.numbers" mat-raised-button color="accent" aria-label="" (click)="key.action()">
+      {{key.title}}
+    </button>
+  </section>
+  <section class="point-count">
+    {{keyPadCountStr}}
+  </section>
 </main>
 <footer>
+  <button *ngFor="let key of keyPad.actions" mat-raised-button color="primary" aria-label="" (click)="key.action()">
+    {{key.title}}
+  </button>
 </footer>

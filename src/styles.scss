@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+main {
+  --header-height: 56px;
+  --footer-height: 56px;
+  width: 100%;
+  height: calc(100% - var(--header-height) - var(--header-height));
+
+
+  // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+  .players,
+  .add-player {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0.5rem;
+
+    .item {
+      margin: 0.5rem;
+      flex-grow: 4;
+      /* default 0 */
+    }
+  }
+
+
+  .game-select {
+    width: 100%;
+  }
+}
+
+footer {
+  width: 100%;
+  height: var(--footer-height);
+}

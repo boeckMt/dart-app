@@ -1,0 +1,50 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.player-cards {
+
+  .mat-card {
+    min-height: 3.5rem;
+
+    .count {
+      text-align: center;
+      font-size: 1.5em;
+    }
+  }
+
+  .mat-card.active {
+    background: rgb(112, 174, 231);
+  }
+}
+
+
+.point-count {
+  margin-top: 0.5rem;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  min-height: 1rem;
+  font-size: 1.5em;
+}
+
+.key-pad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  button {
+    margin: 0.2rem 0;
+    padding: 0.5rem 2.5rem;
+  }
+}
+
+footer {
+  button {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0.2rem 0;
+  }
+}
