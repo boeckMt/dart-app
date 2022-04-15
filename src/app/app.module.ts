@@ -13,12 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { PlayerMenuComponent } from './components/player-menu/player-menu.component';
 import { GameComponent } from './views/game/game.component';
 import { AppRoutingModule } from './app-routing.module';
+import { EndDialogComponent } from './components/end-dialog/end-dialog.component';
 
-const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModule, MatButtonModule, MatDialogModule, MatCardModule];
+const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModule, MatButtonModule, MatDialogModule, MatCardModule, MatSnackBarModule];
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModu
     StartComponent,
     PlayerMenuComponent,
     GameComponent,
+    EndDialogComponent,
   ],
   imports: [
     BrowserModule,

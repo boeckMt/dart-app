@@ -6,14 +6,17 @@ body {
 }
 
 body {
+
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-main {
+app-root {
   --header-height: 56px;
   --footer-height: 56px;
+}
+
+main {
   width: 100%;
   height: calc(100% - var(--header-height) - var(--header-height));
 
@@ -25,7 +28,7 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 0.5rem;
+    padding: 0.5rem;
 
     .item {
       margin: 0.5rem;
@@ -43,4 +46,10 @@ main {
 footer {
   width: 100%;
   height: var(--footer-height);
+
+  button {
+    height: 100% !important;
+    line-height: 3rem !important;
+    font-size: large !important;
+  }
 }

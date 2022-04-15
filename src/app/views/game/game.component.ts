@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GameStateService } from 'src/app/services/game-state.service';
 import { IGame, Player } from 'src/app/shared/utils';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EndDialogComponent } from 'src/app/components/end-dialog/end-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-game',
@@ -39,9 +43,14 @@ export class GameComponent implements OnInit {
   keyPadCountStr = '';
   keyPadCount = 0;
   maxCount = 3 * 60;
-  constructor(private gameState: GameStateService) {
+  constructor(private gameState: GameStateService, private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) {
+
+
     this.currentGame = this.gameState.$game.getValue();
     this.players = this.gameState.$players.getValue();
+    if (!this.currentGame && !this.players.length) {
+      this.router.navigate(['start']);
+    }
     this.activePlayer = new BehaviorSubject(this.players[0].name);
     this.$activePlayer = this.activePlayer.asObservable();
   }
@@ -56,6 +65,8 @@ export class GameComponent implements OnInit {
       this.keyPadCountStr += num;
       this.keyPadCount = parseInt(this.keyPadCountStr);
       console.log('calcTempCount', this.keyPadCount)
+    } else {
+      this.snackBar.open(`${tempCount} looks not possible - max count: ${this.maxCount}`, 'close', { verticalPosition: 'bottom' });
     }
   }
 
@@ -74,10 +85,12 @@ export class GameComponent implements OnInit {
     this.players.find((p, index) => {
       if (p.name === playerName) {
         const newCount = p.count - this.keyPadCount;
-        if (newCount >= 0) {
+        if (newCount > 0) {
           this.players[index].count = p.count - this.keyPadCount;
+          this.nextPlayer(index);
+        } else if (newCount === 0) {
+
         }
-        this.nextPlayer(index);
       }
     });
   }
@@ -110,6 +123,17 @@ export class GameComponent implements OnInit {
     }
 
 
+  }
+
+  gameEnd(player: Player) {
+    const dialogRef = this.dialog.open(EndDialogComponent, {
+      width: '250px',
+      data: { name: player.name },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.players.forEach(p => p.count === this.currentGame.count);
+    });
   }
 
   ngOnInit(): void {
