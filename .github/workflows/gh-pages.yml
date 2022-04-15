@@ -1,0 +1,27 @@
+name: Build and Deploy pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.10.0
+
+      # This builds the project and outputs the result to the 'dist/dart-app' folder.
+      # https://github.com/angular/angular-cli/issues/9016#issuecomment-526825531
+      - name: Install and Build
+        run: |
+          npm ci
+          npx ng build --configuration=production --base-href=/dart-app/
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist/dart-app # The folder the action should deploy.
