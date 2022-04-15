@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IGame, Game301, Player, Game501 } from 'src/app/shared/utils';
+import { IGame, Game301, Player, Game501, savePlayers, restorePlayers } from 'src/app/shared/utils';
 import { MatDialog } from '@angular/material/dialog';
 import { PlayerMenuComponent } from 'src/app/components/player-menu/player-menu.component';
 import { GameStateService } from 'src/app/services/game-state.service';
@@ -16,9 +16,19 @@ export class StartComponent implements OnInit {
   games: IGame[] = [new Game301(true), new Game501()];
 
   currentGame: IGame = null as any;
+
   constructor(public dialog: MatDialog, private gameState: GameStateService) {
     this.getSelectedGame();
-    this.players.push(...[new Player('Player 1', this.currentGame), new Player('Player 2', this.currentGame)]);
+    const storePlayers = restorePlayers();
+    if (storePlayers) {
+      storePlayers.forEach(p => {
+        const player = new Player(p.name, this.currentGame)
+        this.players.push(player);
+      });
+    } else {
+      this.players.push(...[new Player('Player 1', this.currentGame), new Player('Player 2', this.currentGame)]);
+    }
+
     this.updateState();
   }
 
@@ -53,7 +63,7 @@ export class StartComponent implements OnInit {
   }
 
   startGame() {
-    // this.currentGame;
+    savePlayers(this.players);
   }
 
   openMenu(player: Player) {
@@ -63,7 +73,6 @@ export class StartComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (typeof result === 'string') {
         player.name = result;
       } else if (typeof result === 'boolean') {

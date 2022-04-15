@@ -44,3 +44,21 @@ export class Game501 implements IGame {
 
   }
 }
+
+const STORAGE_KEY = 'dart-app';
+export function restorePlayers(): Player[] | null {
+  const playersStr = localStorage.getItem(STORAGE_KEY);
+  if (playersStr) {
+    return JSON.parse(playersStr);
+  } else {
+    return null;
+  }
+}
+
+export function savePlayers(players: Player[]) {
+  const playersJson: { name: string, count: number }[] = [];
+  players.forEach(p => {
+    playersJson.push({ name: p.name, count: p.count });
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(playersJson));
+}

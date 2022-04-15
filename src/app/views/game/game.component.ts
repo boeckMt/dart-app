@@ -60,11 +60,9 @@ export class GameComponent implements OnInit {
     if (this.keyPadCountStr.length) {
       tempCount = parseInt(this.keyPadCountStr + num);
     }
-    console.log('newTempCount', tempCount)
     if (tempCount <= this.maxCount) {
       this.keyPadCountStr += num;
       this.keyPadCount = parseInt(this.keyPadCountStr);
-      console.log('calcTempCount', this.keyPadCount)
     } else {
       this.snackBar.open(`${tempCount} looks not possible - max count: ${this.maxCount}`, 'close', { verticalPosition: 'bottom' });
     }
@@ -89,7 +87,7 @@ export class GameComponent implements OnInit {
           this.players[index].count = p.count - this.keyPadCount;
           this.nextPlayer(index);
         } else if (newCount === 0) {
-
+          this.gameEnd(p);
         }
       }
     });
@@ -116,13 +114,14 @@ export class GameComponent implements OnInit {
       } else {
         newPlayer = this.players[playerIndex + 1].name;
       }
-      this.activePlayer.next(newPlayer);
-      this.keyPadCount = 0;
-      this.keyPadCountStr = '';
-      console.log('newPlayer', newPlayer, playerIndex);
+      this.setActivePlayer(newPlayer);
     }
+  }
 
-
+  setActivePlayer(newPlayer: string) {
+    this.activePlayer.next(newPlayer);
+    this.keyPadCount = 0;
+    this.keyPadCountStr = '';
   }
 
   gameEnd(player: Player) {
@@ -132,7 +131,12 @@ export class GameComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.players.forEach(p => p.count === this.currentGame.count);
+      const counts = this.players.map(p => p.count);
+      const lastCount = Math.max(...counts);
+      const lastPlayer = this.players[counts.indexOf(lastCount)];
+
+      this.players.forEach(p => p.count = this.currentGame.count);
+      this.setActivePlayer(lastPlayer.name);
     });
   }
 
