@@ -6,6 +6,7 @@ Demo: https://boeckmt.github.io/dart-app/
 
 http://paletton.com/#uid=13y0u0kllllaFw0g0qFqFg0w0aF
 https://developer.adobe.com/commerce/pwa-studio/
+https://angular-buch.com/blog/2019-07-progressive-web-app
 
 ---
 
