@@ -19,6 +19,8 @@ import { PlayerMenuComponent } from './components/player-menu/player-menu.compon
 import { GameComponent } from './views/game/game.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EndDialogComponent } from './components/end-dialog/end-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModule, MatButtonModule, MatDialogModule, MatCardModule, MatSnackBarModule];
 
@@ -35,7 +37,13 @@ const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModu
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    ...material
+    ...material,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
