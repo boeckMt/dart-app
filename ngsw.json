@@ -1,0 +1,85 @@
+{
+  "configVersion": 1,
+  "timestamp": 1650153131767,
+  "index": "/dart-app/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/dart-app/favicon.ico",
+        "/dart-app/index.html",
+        "/dart-app/main.cfb47b2e26201634c59f.js",
+        "/dart-app/manifest.webmanifest",
+        "/dart-app/polyfills.f67b4957508e0ac30ce9.js",
+        "/dart-app/runtime.2ce085a500b4ad62c5aa.js",
+        "/dart-app/styles.6a24b2f305357f0ac9ad.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/dart-app/assets/icons/icon-128x128.png",
+        "/dart-app/assets/icons/icon-144x144.png",
+        "/dart-app/assets/icons/icon-152x152.png",
+        "/dart-app/assets/icons/icon-192x192.png",
+        "/dart-app/assets/icons/icon-30x30.png",
+        "/dart-app/assets/icons/icon-384x384.png",
+        "/dart-app/assets/icons/icon-512x512.png",
+        "/dart-app/assets/icons/icon-72x72.png",
+        "/dart-app/assets/icons/icon-96x96.png",
+        "/dart-app/assets/icons/icon.ico"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/dart-app/assets/icons/icon-128x128.png": "ff1b9bd37959d408cd41f67f9e53b1d884447c8c",
+    "/dart-app/assets/icons/icon-144x144.png": "2f7e013b8c504780c163c4fc7f188c0fbe87ffc2",
+    "/dart-app/assets/icons/icon-152x152.png": "2d5d9131d02e43b6b79e53e126460d24a63f339a",
+    "/dart-app/assets/icons/icon-192x192.png": "2b70d7acda2557c9cbee84793a893469a0854eee",
+    "/dart-app/assets/icons/icon-30x30.png": "89752172037857d730f93da7622c1e201b2c47c3",
+    "/dart-app/assets/icons/icon-384x384.png": "40273cd1fe95a600554d2f5c5301a026f48b099d",
+    "/dart-app/assets/icons/icon-512x512.png": "ebcd86ad371928a766f45a2b9366a2e3f550a6c7",
+    "/dart-app/assets/icons/icon-72x72.png": "1950aaf0a8be60804d6d230c4f5068f54cda1ac6",
+    "/dart-app/assets/icons/icon-96x96.png": "4c197b28598106f4011a47327aa0262d20439776",
+    "/dart-app/assets/icons/icon.ico": "5e163ada62eeabfb6f1dd75cc077bf1da7b29a74",
+    "/dart-app/favicon.ico": "5e163ada62eeabfb6f1dd75cc077bf1da7b29a74",
+    "/dart-app/index.html": "48e8fbf706cb636156fbbbe8d419576ab482a9fd",
+    "/dart-app/main.cfb47b2e26201634c59f.js": "726210f2128f1083062ca85d2543f1ae18b26253",
+    "/dart-app/manifest.webmanifest": "1d110dc8df7237cf76166c940cde3fb67982563e",
+    "/dart-app/polyfills.f67b4957508e0ac30ce9.js": "193fc70ffd1852083b1a967d5962453ee9a35a2d",
+    "/dart-app/runtime.2ce085a500b4ad62c5aa.js": "39279a1fd13c14d7c99371cb5f56722cf27b9832",
+    "/dart-app/styles.6a24b2f305357f0ac9ad.css": "6e7ec016cbb78caf82406b5f0b72c6170d177618"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
