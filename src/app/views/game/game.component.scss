@@ -1,3 +1,5 @@
+@import '../../../colors.scss';
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -14,7 +16,7 @@
   }
 
   .mat-card.active {
-    background: rgb(112, 174, 231);
+    background: $color2;
   }
 }
 
@@ -30,9 +32,9 @@
 }
 
 .key-pad {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
 
   button {
     margin: 0.2rem 0;

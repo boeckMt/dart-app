@@ -1,5 +1,6 @@
-<mat-toolbar color="primary">
-  <span>Game: {{currentGame?.name}}</span>
+<mat-toolbar color="primary" class="dart-toolbar">
+  <img src="assets/icons/icon-30x30.png" alt="app logo dart">
+  <span class="title">Game: {{currentGame?.name}}</span>
   <span class="example-spacer"></span>
   <!-- https://fonts.google.com/icons?selected=Material+Icons -->
 
@@ -9,17 +10,23 @@
   </button>
 </mat-toolbar>
 <main>
-  <section class="player-cards">
-    <ng-container *ngIf="players.length">
-      <mat-card *ngFor="let player of players" [ngClass]="{'active': ($activePlayer | async) === player.name}">
-        <div class="name">{{player.name}}</div>
-        <div class="count">{{player.count}}</div>
-      </mat-card>
+  <section class="player-cards" *ngIf="players.length">
+    <ng-container *ngFor="let player of players; let i = index">
+      <ng-container *ngIf="isActivePLayerOrNext(i)">
+        <mat-card [ngClass]="{'active': ($activePlayer | async) === i}">
+          <div class="name">{{player.name}}</div>
+          <div class="count">{{player.count}}</div>
+        </mat-card>
+      </ng-container>
     </ng-container>
   </section>
   <section class="key-pad">
-    <button *ngFor="let key of keyPad.numbers" mat-raised-button color="accent" aria-label="" (click)="key.action()">
-      {{key.title}}
+    <button *ngFor="let key of keyPad.numbers" mat-raised-button color="accent" class="btn-primary" aria-label=""
+      (click)="key.action()">
+      <ng-container *ngIf="key.title === 'back'; else numberkey"><span class="material-icons">backspace</span>
+      </ng-container>
+      <ng-template #numberkey>{{key.title}}</ng-template>
+
     </button>
   </section>
   <section class="point-count">
@@ -27,7 +34,8 @@
   </section>
 </main>
 <footer>
-  <button *ngFor="let key of keyPad.actions" mat-raised-button color="primary" aria-label="" (click)="key.action()">
+  <button *ngFor="let key of keyPad.actions" mat-raised-button color="primary" class="btn-primary" aria-label=""
+    (click)="key.action()">
     {{key.title}}
   </button>
 </footer>

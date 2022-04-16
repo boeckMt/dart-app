@@ -1,25 +1,16 @@
-<mat-toolbar color="primary">
-  <span>{{title}}</span>
-  <!--   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button> -->
+<mat-toolbar color="primary" class="dart-toolbar">
+  <img src="assets/icons/icon-30x30.png" alt="app logo dart">
+  <span class="title">{{title}}</span>
 </mat-toolbar>
 <main>
-  <!--<form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Players</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
-  <form>
-  -->
   <section class="players">
     <ng-container *ngFor="let player of players">
-      <button class="item" mat-raised-button color="accent" (click)="openMenu(player)">{{player.name}}</button>
+      <button class="item btn-primary" mat-raised-button color="accent"
+        (click)="openMenu(player)">{{player.name}}</button>
     </ng-container>
   </section>
   <section class="add-player">
-    <button mat-fab color="primary" aria-label="Add new Player" (click)="addPlayer()">
+    <button mat-fab color="primary" class="btn-primary" aria-label="Add new Player" (click)="addPlayer()">
       <!-- https://fonts.google.com/icons?selected=Material+Icons -->
       <mat-icon>add</mat-icon>
     </button>
@@ -39,5 +30,6 @@
 
 </main>
 <footer>
-  <button mat-raised-button color="accent" (click)="startGame()" [routerLink]="['/game']" [queryParams]="{debug: true}">Start Game</button>
+  <button mat-raised-button color="accent" class="btn-primary" (click)="startGame()" [routerLink]="['/game']"
+    [queryParams]="{debug: true}">Start Game</button>
 </footer>

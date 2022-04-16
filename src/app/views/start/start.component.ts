@@ -77,7 +77,9 @@ export class StartComponent implements OnInit {
         player.name = result;
       } else if (typeof result === 'boolean') {
         if (result === true) {
+          // remove
           this.players = this.players.filter(p => p.name !== player.name);
+          this.updateState();
         }
       }
 

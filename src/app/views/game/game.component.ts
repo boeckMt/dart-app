@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { GameStateService } from 'src/app/services/game-state.service';
 import { IGame, Player } from 'src/app/shared/utils';
 import { Router } from '@angular/router';
@@ -15,8 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class GameComponent implements OnInit {
   currentGame: IGame = null as any;
   players: Player[] = [];
-  activePlayer: BehaviorSubject<Player['name']>;
-  $activePlayer: Observable<Player['name']>;
+  activePlayer: BehaviorSubject<number>;
+  $activePlayer: Observable<number>;
 
   keyPad = {
     numbers: [
@@ -30,7 +31,9 @@ export class GameComponent implements OnInit {
       { title: '8', action: () => { this.addNumber(8) } },
       { title: '9', action: () => { this.addNumber(9) } },
       { title: '0', action: () => { this.addNumber(0) } },
-      { title: '<-', action: () => { this.removeLast() } }
+      {
+        title: 'back', action: () => { this.removeLast() }
+      }
     ],
     actions: [
       { title: 'OK', action: () => { this.addCount() } }
@@ -51,7 +54,7 @@ export class GameComponent implements OnInit {
     if (!this.currentGame && !this.players.length) {
       this.router.navigate(['start']);
     }
-    this.activePlayer = new BehaviorSubject(this.players[0].name);
+    this.activePlayer = new BehaviorSubject(0);
     this.$activePlayer = this.activePlayer.asObservable();
   }
 
@@ -79,7 +82,7 @@ export class GameComponent implements OnInit {
   }
 
   addCount() {
-    const playerName = this.activePlayer.getValue();
+    const playerName = this.players[this.activePlayer.getValue()].name;
     this.players.find((p, index) => {
       if (p.name === playerName) {
         const newCount = p.count - this.keyPadCount;
@@ -98,7 +101,7 @@ export class GameComponent implements OnInit {
     if (index) {
       playerIndex = index;
     } else {
-      const playerName = this.activePlayer.getValue();
+      const playerName = this.players[this.activePlayer.getValue()].name;
       this.players.find((p, index) => {
         if (p.name === playerName) {
           playerIndex = index;
@@ -110,15 +113,15 @@ export class GameComponent implements OnInit {
     if (playerIndex || playerIndex === 0) {
       let newPlayer;
       if (playerIndex === this.players.length - 1) {
-        newPlayer = this.players[0].name;
+        newPlayer = 0
       } else {
-        newPlayer = this.players[playerIndex + 1].name;
+        newPlayer = playerIndex + 1
       }
       this.setActivePlayer(newPlayer);
     }
   }
 
-  setActivePlayer(newPlayer: string) {
+  setActivePlayer(newPlayer: number) {
     this.activePlayer.next(newPlayer);
     this.keyPadCount = 0;
     this.keyPadCountStr = '';
@@ -133,11 +136,27 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       const counts = this.players.map(p => p.count);
       const lastCount = Math.max(...counts);
-      const lastPlayer = this.players[counts.indexOf(lastCount)];
+      const lastPlayer = counts.indexOf(lastCount);
 
       this.players.forEach(p => p.count = this.currentGame.count);
-      this.setActivePlayer(lastPlayer.name);
+      this.setActivePlayer(lastPlayer);
     });
+  }
+
+  isActivePLayerOrNext(index: number) {
+    const activePlayer = this.activePlayer.getValue();
+    const lastPLayer = this.activePlayer.getValue() - 1;
+
+    if (index === activePlayer) {
+      return true;
+    } else if (activePlayer === 0 && index === activePlayer + 1) {
+      return true;
+    }
+    else if (index === lastPLayer) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngOnInit(): void {
