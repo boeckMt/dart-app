@@ -15,11 +15,15 @@ body {
 app-root {
   --header-height: 56px;
   --footer-height: 56px;
+
+  @media (min-width: 599px) {
+    --header-height: 64px;
+  }
 }
 
 main {
   width: 100%;
-  height: calc(100% - var(--header-height) - var(--header-height));
+  height: calc(100% - var(--header-height) - var(--footer-height));
 
 
   // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
