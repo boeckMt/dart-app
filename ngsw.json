@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1650153131767,
+  "timestamp": 1650228319681,
   "index": "/dart-app/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/dart-app/favicon.ico",
         "/dart-app/index.html",
-        "/dart-app/main.cfb47b2e26201634c59f.js",
+        "/dart-app/main.05575d807cec60a53c5d.js",
         "/dart-app/manifest.webmanifest",
         "/dart-app/polyfills.f67b4957508e0ac30ce9.js",
         "/dart-app/runtime.2ce085a500b4ad62c5aa.js",
-        "/dart-app/styles.6a24b2f305357f0ac9ad.css"
+        "/dart-app/styles.11a3f0350954ba9cc93d.css"
       ],
       "patterns": []
     },
@@ -56,12 +56,12 @@
     "/dart-app/assets/icons/icon-96x96.png": "4c197b28598106f4011a47327aa0262d20439776",
     "/dart-app/assets/icons/icon.ico": "5e163ada62eeabfb6f1dd75cc077bf1da7b29a74",
     "/dart-app/favicon.ico": "5e163ada62eeabfb6f1dd75cc077bf1da7b29a74",
-    "/dart-app/index.html": "48e8fbf706cb636156fbbbe8d419576ab482a9fd",
-    "/dart-app/main.cfb47b2e26201634c59f.js": "726210f2128f1083062ca85d2543f1ae18b26253",
-    "/dart-app/manifest.webmanifest": "1d110dc8df7237cf76166c940cde3fb67982563e",
+    "/dart-app/index.html": "9422eda0d0cbbbafb48871f14996324ce51731c4",
+    "/dart-app/main.05575d807cec60a53c5d.js": "db94da3fb7ebd71838cbd6e2a60b69321f4c238f",
+    "/dart-app/manifest.webmanifest": "edb50d928450dc50e8fd55e83017ea28c645fcb5",
     "/dart-app/polyfills.f67b4957508e0ac30ce9.js": "193fc70ffd1852083b1a967d5962453ee9a35a2d",
     "/dart-app/runtime.2ce085a500b4ad62c5aa.js": "39279a1fd13c14d7c99371cb5f56722cf27b9832",
-    "/dart-app/styles.6a24b2f305357f0ac9ad.css": "6e7ec016cbb78caf82406b5f0b72c6170d177618"
+    "/dart-app/styles.11a3f0350954ba9cc93d.css": "0520cabfcc9608d4ff1a955cf18b77a437df023e"
   },
   "navigationUrls": [
     {
