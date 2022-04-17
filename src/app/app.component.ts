@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { AddToHomeService } from './services/add-to-home.service';
+import { SwUpdateService } from './services/sw-update.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent {
   }
 
   constructor(
-    private a2hs: AddToHomeService
-  ) { }
+    private a2hs: AddToHomeService, private swUpdateSvc: SwUpdateService
+  ) {
+    this.swUpdateSvc.checkUpdates();
+  }
 }
