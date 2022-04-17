@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { AddToHomeService } from './services/add-to-home.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dart-app';
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onEventFire(e: any) {
+    this.a2hs.deferredPrompt = e;
+  }
+
+  constructor(
+    private a2hs: AddToHomeService
+  ) { }
 }

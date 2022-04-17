@@ -3,6 +3,8 @@ import { IGame, Game301, Player, Game501, savePlayers, restorePlayers } from 'sr
 import { MatDialog } from '@angular/material/dialog';
 import { PlayerMenuComponent } from 'src/app/components/player-menu/player-menu.component';
 import { GameStateService } from 'src/app/services/game-state.service';
+import { AddToHomeService } from 'src/app/services/add-to-home.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-start',
@@ -17,7 +19,9 @@ export class StartComponent implements OnInit {
 
   currentGame: IGame = null as any;
 
-  constructor(public dialog: MatDialog, private gameState: GameStateService) {
+  isAddToHomeScreenEnabled$: BehaviorSubject<boolean> = null as never;
+
+  constructor(public dialog: MatDialog, private gameState: GameStateService, private a2hs: AddToHomeService) {
     this.getSelectedGame();
     const storePlayers = restorePlayers();
     if (storePlayers) {
@@ -60,6 +64,11 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isAddToHomeScreenEnabled$ = this.a2hs.deferredPromptFired;
+  }
+
+  showPrompt() {
+    this.a2hs.showPrompt();
   }
 
   startGame() {
