@@ -65,6 +65,10 @@ export class StartComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAddToHomeScreenEnabled$ = this.a2hs.deferredPromptFired;
+
+    this.isAddToHomeScreenEnabled$.subscribe(evt => {
+      console.log('isAddToHomeScreenEnabled', evt)
+    })
   }
 
   showPrompt() {

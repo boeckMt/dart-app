@@ -12,6 +12,7 @@ export class AppComponent {
   @HostListener('window:beforeinstallprompt', ['$event'])
   onEventFire(e: any) {
     this.a2hs.deferredPrompt = e;
+    console.log('onEventFire', e)
   }
 
   constructor(
