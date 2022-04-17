@@ -4,8 +4,8 @@
   "theme_color": "#042037",
   "background_color": "#2A4F6E",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "/dart-app/",
+  "start_url": "/dart-app/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
