@@ -4,15 +4,34 @@
 
   .mat-card {
     min-height: 3.5rem;
+    padding: 0;
 
     .count {
       text-align: center;
       font-size: 1.5em;
     }
+
+    div {
+      padding: 0 0.5rem 0.5rem 0.5rem;
+
+      &:first-child {
+        padding: 0.5rem 0.5rem 0 0.5rem;
+      }
+
+      &.checkout {
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+      }
+    }
   }
 
   .mat-card.active {
     background: $color2;
+
+    .checkout {
+      display: flex;
+      justify-content: space-between;
+      background: $color6;
+    }
   }
 }
 

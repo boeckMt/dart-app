@@ -16,6 +16,8 @@
         <mat-card [ngClass]="{'active': ($activePlayer | async) === i}">
           <div class="name">{{player.name}}</div>
           <div class="count">{{player.count}}</div>
+          <div class="checkout" *ngIf="isActivePLayer(i) && hasCheckout(player.count)"
+            [innerHtml]="getCheckout(player.count)"></div>
         </mat-card>
       </ng-container>
     </ng-container>

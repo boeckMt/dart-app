@@ -1,3 +1,5 @@
+import { checkoutTable } from './table';
+
 export class Player {
   count: number;
   protected privName: string = '';
@@ -20,6 +22,19 @@ export class Player {
   constructor(name: string, game: IGame) {
     this.name = name;
     this.count = game.count;
+  }
+}
+
+export class CheckoutTable {
+  table = checkoutTable;
+
+  get(value: number | string, v: 'v1' | 'v2' | 'v3' = 'v1') {
+    const index = `${value}`;
+    if (this.table[index]) {
+      return this.table[index][v];
+    } else {
+      return null;
+    }
   }
 }
 
