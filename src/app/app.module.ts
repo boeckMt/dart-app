@@ -21,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EndDialogComponent } from './components/end-dialog/end-dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CheckoutTableComponent } from './components/checkout-table/checkout-table.component';
 
 const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModule, MatButtonModule, MatDialogModule, MatCardModule, MatSnackBarModule];
 
@@ -31,6 +32,7 @@ const material = [MatToolbarModule, MatIconModule, MatInputModule, MatSelectModu
     PlayerMenuComponent,
     GameComponent,
     EndDialogComponent,
+    CheckoutTableComponent,
   ],
   imports: [
     BrowserModule,

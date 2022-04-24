@@ -1,0 +1,27 @@
+@import '../../../colors.scss';
+
+.checkout {
+  display: flex;
+  margin-right: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 0.15rem;
+  justify-content: space-between;
+  background: $color6;
+
+  .inner {
+    padding: 0 0.5rem;
+  }
+
+  .next-btn {
+    height: 1rem;
+    width: 1rem;
+    line-height: 1rem;
+
+    &.mat-icon-button {
+      .mat-icon {
+        line-height: 1.2rem;
+        font-size: 1em;
+      }
+    }
+  }
+}

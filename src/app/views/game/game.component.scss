@@ -8,30 +8,28 @@
 
     .count {
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.8em;
+      line-height: 1.6rem;
     }
 
-    div {
+    &>div {
       padding: 0 0.5rem 0.5rem 0.5rem;
 
       &:first-child {
         padding: 0.5rem 0.5rem 0 0.5rem;
       }
+    }
 
-      &.checkout {
-        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-      }
+
+
+    .check-count {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
   .mat-card.active {
     background: $color2;
-
-    .checkout {
-      display: flex;
-      justify-content: space-between;
-      background: $color6;
-    }
   }
 }
 
@@ -49,7 +47,7 @@
 .key-pad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
 
   button {
     margin: 0.2rem 0;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GameStateService } from 'src/app/services/game-state.service';
-import { CheckoutTable, IGame, Player } from 'src/app/shared/utils';
+import { IGame, Player } from 'src/app/shared/utils';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EndDialogComponent } from 'src/app/components/end-dialog/end-dialog.component';
@@ -49,8 +49,6 @@ export class GameComponent implements OnInit {
   keyPadCount = 0;
   maxCount = 3 * 60;
 
-
-  checkoutTable = new CheckoutTable();
   constructor(private gameState: GameStateService, private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) {
 
 
@@ -186,18 +184,6 @@ export class GameComponent implements OnInit {
   isActivePLayer(index: number) {
     const activePlayer = this.activePlayer.getValue();
     return index === activePlayer;
-  }
-
-  getCheckout(count: number) {
-    const arr = this.checkoutTable.get(count);
-    if (Array.isArray(arr)) {
-      return `<span>${arr[0] || ''}</span><span>${arr[1] || ''}</span><span>${arr[2] || ''}</span>`;
-    };
-    return false;
-  }
-
-  hasCheckout(count: number) {
-    return (this.getCheckout(count)) ? true : false;
   }
 
   ngOnInit(): void {
